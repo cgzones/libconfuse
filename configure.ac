@@ -7,7 +7,7 @@ AC_CONFIG_AUX_DIR(support)
 AM_INIT_AUTOMAKE([foreign dist-xz])
 AM_SILENT_RULES([no])
 
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_SRCDIR(src/confuse.c)
 
 # Checks for programs.
@@ -19,7 +19,7 @@ LT_INIT([win32-dll])
 
 # optional building of examples:
 AC_ARG_ENABLE([examples],
-	[AC_HELP_STRING([--disable-examples], [don't build examples in examples])],
+	[AS_HELP_STRING([--disable-examples], [don't build examples in examples])],
 	[], [enable_examples=yes])
 AM_CONDITIONAL([ENABLE_EXAMPLES], [test "$enable_examples" = yes])
 
