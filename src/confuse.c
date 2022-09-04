@@ -895,7 +895,7 @@ DLLIMPORT cfg_value_t *cfg_setopt(cfg_t *cfg, cfg_opt_t *opt, const char *value)
 			val = NULL;
 
 			if (opt->type == CFGT_SEC && is_set(CFGF_TITLE, opt->flags)) {
-				unsigned int i;
+				unsigned int j;
 
 				/* XXX: Check if there already is a section with the same title. */
 
@@ -908,15 +908,15 @@ DLLIMPORT cfg_value_t *cfg_setopt(cfg_t *cfg, cfg_opt_t *opt, const char *value)
 					return NULL;
 				}
 
-				for (i = 0; i < opt->nvalues && val == NULL; i++) {
-					cfg_t *sec = opt->values[i]->section;
+				for (j = 0; j < opt->nvalues && val == NULL; j++) {
+					cfg_t *sec = opt->values[j]->section;
 
 					if (is_set(CFGF_NOCASE, cfg->flags)) {
 						if (strcasecmp(value, sec->title) == 0)
-							val = opt->values[i];
+							val = opt->values[j];
 					} else {
 						if (strcmp(value, sec->title) == 0)
-							val = opt->values[i];
+							val = opt->values[j];
 					}
 				}
 
