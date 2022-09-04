@@ -45,8 +45,6 @@ int main(void)
 	};
 	unsigned int num;
 	cfg_t *cfg, *sec;
-	cfg_opt_t *opt;
-	char *key;
 	int rc;
 
 	cfg = cfg_init(opts, CFGF_NONE);
