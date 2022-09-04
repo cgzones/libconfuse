@@ -28,7 +28,7 @@ static int parse_action(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *res
 	return 0;
 }
 
-int validate_speed(cfg_t *cfg, cfg_opt_t *opt)
+static int validate_speed(cfg_t *cfg, cfg_opt_t *opt)
 {
 	unsigned int i;
 
@@ -41,7 +41,7 @@ int validate_speed(cfg_t *cfg, cfg_opt_t *opt)
 	return 0;
 }
 
-int validate_speed2(cfg_t *cfg, cfg_opt_t *opt, void *value)
+static int validate_speed2(cfg_t *cfg, cfg_opt_t *opt, void *value)
 {
 	int *val = (int *)value;
 
@@ -54,7 +54,7 @@ int validate_speed2(cfg_t *cfg, cfg_opt_t *opt, void *value)
 	return 0;
 }
 
-int validate_name2(cfg_t *cfg, cfg_opt_t *opt, void *value)
+static int validate_name2(cfg_t *cfg, cfg_opt_t *opt, void *value)
 {
 	char *str = (char *)value;
 
@@ -67,7 +67,7 @@ int validate_name2(cfg_t *cfg, cfg_opt_t *opt, void *value)
 	return 0;
 }
 
-int validate_ip(cfg_t *cfg, cfg_opt_t *opt)
+static int validate_ip(cfg_t *cfg, cfg_opt_t *opt)
 {
 	unsigned int i, j;
 
@@ -88,7 +88,7 @@ int validate_ip(cfg_t *cfg, cfg_opt_t *opt)
 	return 0;
 }
 
-int validate_action(cfg_t *cfg, cfg_opt_t *opt)
+static int validate_action(cfg_t *cfg, cfg_opt_t *opt)
 {
 	cfg_opt_t *name_opt;
 	cfg_t *action_sec = cfg_opt_getnsec(opt, 0);
@@ -107,7 +107,7 @@ int validate_action(cfg_t *cfg, cfg_opt_t *opt)
 	return 0;
 }
 
-void validate_setup(void)
+static void validate_setup(void)
 {
 	cfg_opt_t *opt = 0;
 
@@ -163,12 +163,12 @@ void validate_setup(void)
 	cfg_set_validate_func2(cfg, "multi_options|options|name", validate_name2);
 }
 
-void validate_teardown(void)
+static void validate_teardown(void)
 {
 	cfg_free(cfg);
 }
 
-void validate_test(void)
+static void validate_test(void)
 {
 	const char *buf;
 	unsigned int i;

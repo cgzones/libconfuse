@@ -14,7 +14,7 @@
 #define ACB_ASK 3
 
 /* called on alias() functions in the config file */
-int conf_alias(cfg_t *cfg, cfg_opt_t *opt, int argc, const char **argv)
+static int conf_alias(cfg_t *cfg, cfg_opt_t *opt, int argc, const char **argv)
 {
 	if (argc < 2) {
 		cfg_error(cfg, "function '%s' requires 2 arguments", cfg_opt_name(opt));
@@ -25,7 +25,7 @@ int conf_alias(cfg_t *cfg, cfg_opt_t *opt, int argc, const char **argv)
 }
 
 /* parse values for the auto-create-bookmark option */
-int conf_parse_acb(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
+static int conf_parse_acb(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	if (strcmp(value, "yes") == 0)
 		*(int *)result = ACB_YES;
@@ -41,7 +41,7 @@ int conf_parse_acb(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 }
 
 /* validates a port option (must be positive) */
-int conf_validate_port(cfg_t *cfg, cfg_opt_t *opt)
+static int conf_validate_port(cfg_t *cfg, cfg_opt_t *opt)
 {
 	int value = cfg_opt_getnint(opt, 0);
 
@@ -53,7 +53,7 @@ int conf_validate_port(cfg_t *cfg, cfg_opt_t *opt)
 }
 
 /* validates a bookmark section (host option required) */
-int conf_validate_bookmark(cfg_t *cfg, cfg_opt_t *opt)
+static int conf_validate_bookmark(cfg_t *cfg, cfg_opt_t *opt)
 {
 	cfg_t *bookmark = cfg_opt_getnsec(opt, cfg_opt_size(opt) - 1);
 
@@ -64,7 +64,7 @@ int conf_validate_bookmark(cfg_t *cfg, cfg_opt_t *opt)
 	return 0;
 }
 
-cfg_t *parse_conf(const char *filename)
+static cfg_t *parse_conf(const char *filename)
 {
 	static cfg_opt_t bookmark_opts[] = {
 		CFG_STR("host", NULL, CFGF_NODEFAULT),

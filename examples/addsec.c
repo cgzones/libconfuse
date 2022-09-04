@@ -15,7 +15,7 @@
 cfg_t *cfg = NULL;
 const char *config_filename = "./reread.conf";
 
-void read_config(void)
+static void read_config(void)
 {
 	static cfg_opt_t arg_opts[] = {
 		CFG_STR("value", "default", CFGF_NONE),
@@ -35,7 +35,7 @@ void read_config(void)
 	}
 }
 
-void print_message()
+static void print_message(void)
 {
 	size_t i;
 

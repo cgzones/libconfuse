@@ -7,7 +7,7 @@
 
 static cfg_t *cfg;
 
-int parse_ip_address(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
+static int parse_ip_address(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int i;
 	unsigned int e[4];
@@ -66,7 +66,7 @@ static char *my_inet_ntoa(unsigned char *addr)
 	return buf;
 }
 
-int parse_ether_address(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
+static int parse_ether_address(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	unsigned char *tmp;
 
@@ -80,7 +80,7 @@ int parse_ether_address(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *res
 	return 0;
 }
 
-void single_setup(void)
+static void single_setup(void)
 {
 	static cfg_opt_t subsec_opts[] = {
 		CFG_STR("subsubstring", "subsubdefault", CFGF_NONE),
@@ -125,12 +125,12 @@ void single_setup(void)
 	memset(subsec_opts, 0, sizeof(subsec_opts));
 }
 
-void single_teardown(void)
+static void single_teardown(void)
 {
 	cfg_free(cfg);
 }
 
-void single_string_test(void)
+static void single_string_test(void)
 {
 	const char *buf;
 
@@ -149,7 +149,7 @@ void single_string_test(void)
 	fail_unless(strcmp(cfg_getstr(cfg, "string"), "multi set") == 0);
 }
 
-void single_integer_test(void)
+static void single_integer_test(void)
 {
 	const char *buf;
 
@@ -171,7 +171,7 @@ void single_integer_test(void)
 	fail_unless(cfg_getint(cfg, "integer") == 42);
 }
 
-void single_float_test(void)
+static void single_float_test(void)
 {
 	const char *buf;
 
@@ -193,7 +193,7 @@ void single_float_test(void)
 	fail_unless(cfg_getfloat(cfg, "float") == 4.2);
 }
 
-void single_bool_test(void)
+static void single_bool_test(void)
 {
 	const char *buf;
 
@@ -233,7 +233,7 @@ void single_bool_test(void)
 	fail_unless(cfg_getbool(cfg, "bool") == cfg_true);
 }
 
-void single_section_test(void)
+static void single_section_test(void)
 {
 	const char *buf;
 	cfg_t *sec, *subsec;
@@ -268,7 +268,7 @@ void single_section_test(void)
 	fail_unless(cfg_parse_buf(cfg, buf) == CFG_SUCCESS);
 }
 
-void single_ptr_test(void)
+static void single_ptr_test(void)
 {
 	const char *buf;
 	char tmp[80];
@@ -301,7 +301,7 @@ void single_ptr_test(void)
 	fail_unless(cfg_parse_buf(cfg, buf) == CFG_PARSE_ERROR);
 }
 
-void parse_buf_test(void)
+static void parse_buf_test(void)
 {
 	const char *buf;
 
@@ -318,13 +318,13 @@ void parse_buf_test(void)
 	fail_unless(cfg_parse_buf(cfg, buf) == CFG_PARSE_ERROR);
 }
 
-void nonexistent_option_test(void)
+static void nonexistent_option_test(void)
 {
 	fail_unless(cfg_getopt(cfg, "nonexistent") == 0);
 	fail_unless(cfg_getopt(cfg, "section|subnonexistent") == 0);
 }
 
-void nodefault_test(void)
+static void nodefault_test(void)
 {
 	const char *buf;
 	cfg_t *nodefsec;

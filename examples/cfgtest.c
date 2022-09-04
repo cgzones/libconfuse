@@ -1,12 +1,12 @@
 #include "confuse.h"
 #include <string.h>
 
-void print_func(cfg_opt_t *opt, unsigned int index, FILE *fp)
+static void print_func(cfg_opt_t *opt, unsigned int index, FILE *fp)
 {
 	fprintf(fp, "%s(foo)", opt->name);
 }
 
-void print_ask(cfg_opt_t *opt, unsigned int index, FILE *fp)
+static void print_ask(cfg_opt_t *opt, unsigned int index, FILE *fp)
 {
 	int value = cfg_opt_getnint(opt, index);
 
@@ -26,7 +26,7 @@ void print_ask(cfg_opt_t *opt, unsigned int index, FILE *fp)
 
 /* function callback
  */
-int cb_func(cfg_t *cfg, cfg_opt_t *opt, int argc, const char **argv)
+static int cb_func(cfg_t *cfg, cfg_opt_t *opt, int argc, const char **argv)
 {
 	int i;
 
@@ -47,7 +47,7 @@ int cb_func(cfg_t *cfg, cfg_opt_t *opt, int argc, const char **argv)
  * VALUE must be "yes", "no" or "maybe", and the corresponding results
  * are the integers 1, 2 and 3.
  */
-int cb_verify_ask(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
+static int cb_verify_ask(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	if (strcmp(value, "yes") == 0)
 		*(long int *)result = 1;
@@ -62,7 +62,7 @@ int cb_verify_ask(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	return 0;
 }
 
-int cb_validate_bookmark(cfg_t *cfg, cfg_opt_t *opt)
+static int cb_validate_bookmark(cfg_t *cfg, cfg_opt_t *opt)
 {
 	/* only validate the last bookmark */
 	cfg_t *sec = cfg_opt_getnsec(opt, cfg_opt_size(opt) - 1);

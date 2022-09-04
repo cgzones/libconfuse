@@ -8,7 +8,7 @@
 cfg_t *cfg = NULL;
 const char *config_filename = "./reread.conf";
 
-void read_config(void)
+static void read_config(void)
 {
 	static cfg_opt_t arg_opts[] = {
 		CFG_STR("value", "default", CFGF_NONE),
@@ -33,7 +33,7 @@ void read_config(void)
 	cfg_parse(cfg, config_filename);
 }
 
-void sighandler(int sig)
+static void sighandler(int sig)
 {
 	read_config();
 	signal(SIGHUP, sighandler);
@@ -41,7 +41,7 @@ void sighandler(int sig)
 
 static int loop = 1;
 
-void usr1handler(int sig)
+static void usr1handler(int sig)
 {
 	loop = 0;
 }
