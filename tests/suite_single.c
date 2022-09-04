@@ -132,7 +132,7 @@ void single_teardown(void)
 
 void single_string_test(void)
 {
-	char *buf;
+	const char *buf;
 
 	fail_unless(cfg_size(cfg, "string") == 1);
 	fail_unless(cfg_opt_size(cfg_getopt(cfg, "string")) == 1);
@@ -151,7 +151,7 @@ void single_string_test(void)
 
 void single_integer_test(void)
 {
-	char *buf;
+	const char *buf;
 
 	fail_unless(cfg_size(cfg, "integer") == 1);
 	fail_unless(cfg_opt_size(cfg_getopt(cfg, "integer")) == 1);
@@ -173,7 +173,7 @@ void single_integer_test(void)
 
 void single_float_test(void)
 {
-	char *buf;
+	const char *buf;
 
 	fail_unless(cfg_size(cfg, "float") == 1);
 	fail_unless(cfg_opt_size(cfg_getopt(cfg, "float")) == 1);
@@ -195,7 +195,7 @@ void single_float_test(void)
 
 void single_bool_test(void)
 {
-	char *buf;
+	const char *buf;
 
 	fail_unless(cfg_size(cfg, "bool") == 1);
 	fail_unless(cfg_opt_size(cfg_getopt(cfg, "bool")) == 1);
@@ -235,7 +235,7 @@ void single_bool_test(void)
 
 void single_section_test(void)
 {
-	char *buf;
+	const char *buf;
 	cfg_t *sec, *subsec;
 
 	fail_unless(cfg_size(cfg, "section") == 1);
@@ -270,7 +270,7 @@ void single_section_test(void)
 
 void single_ptr_test(void)
 {
-	char *buf;
+	const char *buf;
 	char tmp[80];
 	char addr[] = { 0xC0, 0xA8, 0x00, 0x01, 0 };	/* 192.168.0.1 */
 	struct in_addr *ipaddr;
@@ -303,7 +303,7 @@ void single_ptr_test(void)
 
 void parse_buf_test(void)
 {
-	char *buf;
+	const char *buf;
 
 	fail_unless(cfg_parse_buf(cfg, 0) == CFG_SUCCESS);
 	fail_unless(cfg_parse_buf(cfg, "") == CFG_SUCCESS);
@@ -326,7 +326,7 @@ void nonexistent_option_test(void)
 
 void nodefault_test(void)
 {
-	char *buf;
+	const char *buf;
 	cfg_t *nodefsec;
 
 	fail_unless(cfg_size(cfg, "nodefstring") == 0);

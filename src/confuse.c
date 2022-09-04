@@ -59,7 +59,7 @@ const char confuse_version[] = PACKAGE_VERSION;
 const char confuse_copyright[] = PACKAGE_STRING " by Martin Hedenfalk <martin@bzero.se>";
 const char confuse_author[] = "Martin Hedenfalk <martin@bzero.se>";
 
-char *cfg_yylval = NULL;
+const char *cfg_yylval = NULL;
 
 extern int  cfg_yylex(cfg_t *cfg);
 extern void cfg_yylex_destroy(void);
@@ -619,7 +619,7 @@ static cfg_value_t *cfg_addval(cfg_opt_t *opt)
 	return opt->values[opt->nvalues++];
 }
 
-static cfg_opt_t *cfg_addopt(cfg_t *cfg, char *key)
+static cfg_opt_t *cfg_addopt(cfg_t *cfg, const char *key)
 {
 	int num = cfg_num(cfg);
 	cfg_opt_t *opts;

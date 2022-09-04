@@ -48,8 +48,8 @@ static void list_teardown(void)
 
 static void list_string_test(void)
 {
-	char *buf;
-	char *multi[2];
+	const char *buf;
+	const char *multi[2];
 
 	fail_unless(cfg_size(cfg, "string") == 3);
 	fail_unless(cfg_opt_size(cfg_getopt(cfg, "string")) == 3);
@@ -90,8 +90,8 @@ static void list_string_test(void)
 
 static void list_integer_test(void)
 {
-	char *buf;
-	char *multi[3];
+	const char *buf;
+	const char *multi[3];
 
 	fail_unless(cfg_size(cfg, "integer") == 2);
 	fail_unless(cfg_opt_size(cfg_getopt(cfg, "integer")) == 2);
@@ -138,8 +138,8 @@ static void list_integer_test(void)
 
 static void list_float_test(void)
 {
-	char *buf;
-	char *multi[3];
+	const char *buf;
+	const char *multi[3];
 
 	fail_unless(cfg_size(cfg, "float") == 1);
 	fail_unless(cfg_opt_size(cfg_getopt(cfg, "float")) == 1);
@@ -192,8 +192,8 @@ static void list_float_test(void)
 
 static void list_bool_test(void)
 {
-	char *buf;
-	char *multi[3];
+	const char *buf;
+	const char *multi[3];
 
 	fail_unless(cfg_size(cfg, "bool") == 6);
 	fail_unless(cfg_opt_size(cfg_getopt(cfg, "bool")) == 6);
@@ -253,7 +253,7 @@ static void list_bool_test(void)
 
 static void list_section_test(void)
 {
-	char *buf;
+	const char *buf;
 	cfg_t *sec, *subsec;
 	cfg_opt_t *opt;
 
@@ -323,7 +323,7 @@ static void list_section_test(void)
 
 static void parse_buf_test(void)
 {
-	char *buf;
+	const char *buf;
 
 	fail_unless(cfg_parse_buf(cfg, 0) == CFG_SUCCESS);
 	fail_unless(cfg_parse_buf(cfg, "") == CFG_SUCCESS);
@@ -363,7 +363,7 @@ static void parse_buf_test(void)
 
 static void nonexistent_option_test(void)
 {
-	char *buf;
+	const char *buf;
 
 	fail_unless(cfg_numopts(cfg->opts) == numopts);
 	fail_unless(cfg_getopt(cfg, "nonexistent") == 0);

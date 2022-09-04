@@ -170,7 +170,7 @@ void validate_teardown(void)
 
 void validate_test(void)
 {
-	char *buf;
+	const char *buf;
 	unsigned int i;
 
 	buf = "action = wlak";

@@ -43,7 +43,7 @@ static void func_teardown(void)
 
 static void func_test(void)
 {
-	char *buf;
+	const char *buf;
 
 	func_alias_called = 0;
 	buf = "alias(ll, 'ls -l')";

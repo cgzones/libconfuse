@@ -50,7 +50,7 @@
  */
 #define YY_NO_INPUT
 
-typedef char * YYSTYPE;
+typedef const char * YYSTYPE;
 extern YYSTYPE cfg_yylval;
 
 #define YY_DECL int cfg_yylex ( cfg_t *cfg )
@@ -263,7 +263,7 @@ void cfg_scan_fp_end(void);
 }
 
 $\{[^}]*\} {
-    char *var;
+    const char *var;
     char *e;
 
     yytext[strlen(yytext) - 1] = 0;

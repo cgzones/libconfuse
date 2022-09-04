@@ -18,7 +18,7 @@ int main(void)
 		CFG_END()
 	};
 
-	char *buf =
+	const char *buf =
 		" delay = 3\n"
 		"# message = 'asdfasfasfd tersf'\n"
 		" argument one { value = bar }\n"

@@ -21,7 +21,7 @@ void read_config(void)
 		CFG_END()
 	};
 
-	char *buf = ""
+	const char *buf = ""
 	    " delay = 3\n" "# message = \"asdfasfasfd tersf\"\n" " argument one { value = 1 }\n" " argument two { value=foo}\n";
 
 	cfg_free(cfg);
