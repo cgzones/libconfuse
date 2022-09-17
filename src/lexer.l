@@ -58,7 +58,7 @@ extern YYSTYPE cfg_yylval;
 /* temporary buffer for the quoted strings scanner
  */
 #define CFG_QSTRING_BUFSIZ 32
-char *cfg_qstring = NULL;
+static char *cfg_qstring = NULL;
 static size_t qstring_index = 0;
 static size_t qstring_len = 0;
 static void qputc(char ch);
@@ -68,12 +68,12 @@ static int  qend(cfg_t *cfg, int trim, int ret);
 static int  qstr(cfg_t *cfg, char skip, int ret);
 
 #define MAX_INCLUDE_DEPTH 10
-struct {
+static struct {
     FILE *fp;
     char *filename;
     unsigned int line;
 } cfg_include_stack[MAX_INCLUDE_DEPTH];
-int cfg_include_stack_ptr = 0;
+static int cfg_include_stack_ptr = 0;
 
 void cfg_scan_fp_begin(FILE *fp);
 void cfg_scan_fp_end(void);
