@@ -46,6 +46,11 @@ AM_CONDITIONAL(MISSING_FMEMOPEN, [test "x$ac_cv_func_fmemopen" = "xno"])
 AM_CONDITIONAL(MISSING_REALLOCARRAY, [test "x$ac_cv_func_reallocarray" = "xno"])
 AM_CONDITIONAL(WINDOWS_BUILD, [test "x$ac_cv_header_windows_h" = "xyes"])
 
+AC_ARG_ENABLE([werror],
+	[AS_HELP_STRING([--enable-werror], [Treat compiler warnings as errors @<:@default=off@:>@])],
+	[AM_CFLAGS+=" -Werror"])
+AC_SUBST([AM_CFLAGS])
+
 # Files to generate
 AC_CONFIG_FILES([Makefile \
 		 src/Makefile \
